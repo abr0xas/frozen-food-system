@@ -1,14 +1,20 @@
 export interface LoginCredentials {
-  email: string;
-  password: string;
+  readonly email: string;
+  readonly password: string;
 }
 
 export interface RegisterCredentials extends LoginCredentials {
-  role: 'admin' | 'operario' | 'repartidor';
+  readonly role: 'admin' | 'operario' | 'repartidor';
 }
 
 export interface AuthResponse {
-  user: any;
-  session: any;
-  error?: string;
+  readonly user: unknown;
+  readonly session: unknown;
+  readonly error?: string;
+}
+
+export interface LoginFormData {
+  readonly email: string;
+  readonly password: string;
+  readonly rememberMe: boolean;
 }
