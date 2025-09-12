@@ -230,8 +230,12 @@
           <clipPath id="a"><path fill="#fff" d="M0 0h982v239H0z" /></clipPath>
         </defs>
       </svg>
-      <h1>Hello, {{ title() }}</h1>
-      <p>Congratulations! Your app is running. 🎉</p>
+      <h1>{{ title() }}</h1>
+      <p>Sistema de Comida Congelada - Angular + Supabase</p>
+      <div style="margin-top: 2rem; padding: 1rem; background: var(--gray-900); color: white; border-radius: 8px;">
+        <h3 style="margin: 0 0 1rem 0; color: white;">Estado de Conexión Supabase:</h3>
+        <p style="margin: 0; font-family: monospace; color: white;">{{ connectionStatus() }}</p>
+      </div>
     </div>
     <div class="divider" role="separator" aria-label="Divider"></div>
     <div class="right-side">
