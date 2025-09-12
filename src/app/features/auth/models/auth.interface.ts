@@ -8,7 +8,7 @@ export interface RegisterCredentials extends LoginCredentials {
 }
 
 export interface AuthResponse {
-  user: any;
-  session: any;
+  user: unknown;
+  session: unknown;
   error?: string;
 }
