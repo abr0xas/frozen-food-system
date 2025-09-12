@@ -89,7 +89,7 @@ export class AuthService {
     }));
     
     try {
-      const { data, error } = await this.supabase.auth.signInWithPassword({
+      const { error } = await this.supabase.auth.signInWithPassword({
         email: credentials.email,
         password: credentials.password
       });

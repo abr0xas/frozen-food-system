@@ -3,8 +3,8 @@
     <app-login-form
       [loading]="loading()"
       [error]="error()"
-      (onSubmit)="onLogin($event)"
-      (onClearError)="onClearError()">
+      (submitForm)="onLogin($event)"
+      (clearError)="onClearError()">
     </app-login-form>
   </div>
 </div>

@@ -11,7 +11,7 @@
       <div class="user-field">
         <mat-icon class="field-icon">email</mat-icon>
         <div class="field-content">
-          <label>Email:</label>
+          <span class="field-label">Email:</span>
           <span>{{ user().email }}</span>
         </div>
       </div>
@@ -19,7 +19,7 @@
       <div class="user-field">
         <mat-icon class="field-icon">badge</mat-icon>
         <div class="field-content">
-          <label>Rol:</label>
+          <span class="field-label">Rol:</span>
           <mat-chip [color]="getRoleColor(user().role)">
             {{ getRoleDisplayName(user().role) }}
           </mat-chip>
@@ -29,7 +29,7 @@
       <div class="user-field">
         <mat-icon class="field-icon">schedule</mat-icon>
         <div class="field-content">
-          <label>Miembro desde:</label>
+          <span class="field-label">Miembro desde:</span>
           <span>{{ user().created_at | date:'dd/MM/yyyy' }}</span>
         </div>
       </div>
@@ -41,7 +41,7 @@
       mat-raised-button 
       color="warn" 
       [disabled]="loading()"
-      (click)="logout()">
+      (click)="onLogout()">
       <mat-icon>logout</mat-icon>
       @if (loading()) {
         <span>Cerrando sesión...</span>

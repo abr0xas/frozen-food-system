@@ -23,7 +23,7 @@ export class UserProfileComponent {
   user = input.required<User>();
   loading = input<boolean>(false);
   
-  onLogout = output<void>();
+  logout = output<void>();
 
   getRoleDisplayName(role: string): string {
     const roleMap = {
@@ -45,7 +45,7 @@ export class UserProfileComponent {
     return colorMap[role as keyof typeof colorMap] || 'primary';
   }
 
-  logout(): void {
-    this.onLogout.emit();
+  onLogout(): void {
+    this.logout.emit();
   }
 }

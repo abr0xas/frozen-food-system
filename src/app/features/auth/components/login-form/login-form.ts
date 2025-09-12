@@ -27,8 +27,8 @@ export class LoginFormComponent {
   loading = input<boolean>(false);
   error = input<string | null>(null);
   
-  onSubmit = output<LoginFormData>();
-  onClearError = output<void>();
+  submitForm = output<LoginFormData>();
+  clearError = output<void>();
 
   private readonly fb = new FormBuilder();
   private readonly hidePassword = signal<boolean>(true);
@@ -50,7 +50,7 @@ export class LoginFormComponent {
   onFormSubmit(): void {
     if (this.loginForm.valid) {
       const formValue = this.loginForm.value;
-      this.onSubmit.emit({
+      this.submitForm.emit({
         email: formValue.email || '',
         password: formValue.password || '',
         rememberMe: formValue.rememberMe || false
@@ -60,8 +60,8 @@ export class LoginFormComponent {
     }
   }
 
-  clearError(): void {
-    this.onClearError.emit();
+  onClearError(): void {
+    this.clearError.emit();
   }
 
   getEmailErrorMessage(): string {
