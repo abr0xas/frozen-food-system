@@ -15,7 +15,7 @@ module.exports = tseslint.config(
     processor: angular.processInlineTemplates,
     languageOptions: {
       parserOptions: {
-        project: "./tsconfig.json",
+        projectService: true,
         tsconfigRootDir: __dirname,
       },
     },
@@ -37,7 +37,7 @@ module.exports = tseslint.config(
         },
       ],
       "@typescript-eslint/no-explicit-any": "error",
-      "@typescript-eslint/no-unused-vars": "error",
+      "@typescript-eslint/no-unused-vars": ["error", { "argsIgnorePattern": "^_" }],
       "@typescript-eslint/no-inferrable-types": "error",
       "@typescript-eslint/no-non-null-assertion": "error",
       "@angular-eslint/no-empty-lifecycle-method": "error",
