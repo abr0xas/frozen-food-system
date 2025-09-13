@@ -1,11 +1,11 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { AppShell } from './layouts/app-shell/app-shell';
+import { LayoutContainer } from './layouts/containers/layout-container/layout-container';
 import { AuthService } from './core/services/auth';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, AppShell],
+  imports: [RouterOutlet, LayoutContainer],
   templateUrl: './app.html',
   styleUrl: './app.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

@@ -4,7 +4,7 @@
     #sidenav 
     [mode]="isMobile() ? 'over' : 'side'"
     [opened]="sidebarOpen()"
-    (closed)="closeSidebar()"
+    (closed)="handleCloseSidebar()"
     class="app-sidenav">
     
     <!-- Logo/Brand -->
@@ -15,7 +15,8 @@
 
     <!-- Navigation -->
     <app-navigation 
-      (navigate)="closeSidebar()"
+      [navigationItems]="navigationItems()"
+      (navigate)="handleNavigate()"
       class="sidenav-content">
     </app-navigation>
   </mat-sidenav>
@@ -27,7 +28,7 @@
       <!-- Menu Button -->
       <button 
         mat-icon-button 
-        (click)="toggleSidebar()"
+        (click)="handleToggleSidebar()"
         class="menu-button">
         <mat-icon>menu</mat-icon>
       </button>
@@ -41,7 +42,7 @@
       <!-- Theme Toggle -->
       <button 
         mat-icon-button 
-        (click)="toggleTheme()"
+        (click)="handleToggleTheme()"
         class="theme-toggle-button"
         [title]="'Cambiar tema: ' + currentTheme()">
         @if (isDark()) {
@@ -64,13 +65,13 @@
           <div class="user-menu-header">
             <div class="user-info">
               <div class="user-name">{{ user()?.email }}</div>
-              <div class="user-role">Administrador</div>
+              <div class="user-role">{{ user()?.role || 'Administrador' }}</div>
             </div>
           </div>
           
           <mat-divider></mat-divider>
           
-          <button mat-menu-item (click)="onLogout()">
+          <button mat-menu-item (click)="handleLogout()">
             <mat-icon>logout</mat-icon>
             <span>Cerrar Sesión</span>
           </button>
@@ -80,7 +81,7 @@
 
     <!-- Page Content -->
     <div class="page-content">
-      <router-outlet></router-outlet>
+      <ng-content></ng-content>
     </div>
   </mat-sidenav-content>
 </mat-sidenav-container>

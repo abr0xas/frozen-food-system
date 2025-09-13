@@ -1,10 +1,10 @@
 <mat-nav-list class="navigation-list">
-  @for (item of navigationItems; track item.route) {
+  @for (item of navigationItems(); track item.route) {
     <mat-list-item 
       class="navigation-item"
       [routerLink]="item.route"
       routerLinkActive="active"
-      (click)="onNavigate()">
+      (click)="handleNavigate()">
       
       <mat-icon matListItemIcon class="nav-icon">{{ item.icon }}</mat-icon>
       
@@ -28,7 +28,7 @@
           class="navigation-item sub-item"
           [routerLink]="child.route"
           routerLinkActive="active"
-          (click)="onNavigate()">
+          (click)="handleNavigate()">
           
           <mat-icon matListItemIcon class="nav-icon sub-icon">{{ child.icon }}</mat-icon>
           <span matListItemTitle class="nav-label">{{ child.label }}</span>
