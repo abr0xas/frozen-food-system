@@ -9,22 +9,24 @@ import { NavigationItem } from '../../models/layout.interface';
   selector: 'app-layout-container',
   imports: [RouterOutlet, AppShellComponent],
   template: `
-    <app-app-shell
-      [sidebarOpen]="sidebarOpen()"
-      [isMobile]="isMobile()"
-      [currentTheme]="currentTheme()"
-      [isDark]="isDark()"
-      [user]="user()"
-      [isAuthenticated]="isAuthenticated()"
-      [navigationItems]="navigationItems"
-      (toggleSidebar)="toggleSidebar()"
-      (closeSidebar)="closeSidebar()"
-      (toggleTheme)="toggleTheme()"
-      (logout)="onLogout()"
-      (navigate)="closeSidebar()">
-      
-      <router-outlet></router-outlet>
-    </app-app-shell>
+    <div class="layout-container">
+      <app-app-shell
+        [sidebarOpen]="sidebarOpen()"
+        [isMobile]="isMobile()"
+        [currentTheme]="currentTheme()"
+        [isDark]="isDark()"
+        [user]="user()"
+        [isAuthenticated]="isAuthenticated()"
+        [navigationItems]="navigationItems"
+        (toggleSidebar)="toggleSidebar()"
+        (closeSidebar)="closeSidebar()"
+        (toggleTheme)="toggleTheme()"
+        (logout)="onLogout()"
+        (navigate)="closeSidebar()">
+        
+        <router-outlet></router-outlet>
+      </app-app-shell>
+    </div>
   `,
   styleUrl: './layout-container.scss',
   changeDetection: ChangeDetectionStrategy.OnPush

@@ -1,23 +1,21 @@
-<mat-nav-list class="navigation-list">
+<mat-nav-list>
   @for (item of navigationItems(); track item.route) {
     <mat-list-item 
-      class="navigation-item"
       [routerLink]="item.route"
-      routerLinkActive="active"
+      routerLinkActive="mdc-list-item--activated"
       (click)="handleNavigate()">
       
-      <mat-icon matListItemIcon class="nav-icon">{{ item.icon }}</mat-icon>
-      
-      <span matListItemTitle class="nav-label">{{ item.label }}</span>
+      <mat-icon matListItemIcon>{{ item.icon }}</mat-icon>
+      <span matListItemTitle>{{ item.label }}</span>
       
       @if (item.badge && item.badge > 0) {
-        <mat-icon matListItemMeta class="badge-icon" [matBadge]="item.badge" matBadgeColor="warn">
+        <mat-icon matListItemMeta [matBadge]="item.badge" matBadgeColor="warn">
           notifications
         </mat-icon>
       }
       
       @if (item.children && item.children.length > 0) {
-        <mat-icon matListItemMeta class="expand-icon">expand_more</mat-icon>
+        <mat-icon matListItemMeta>expand_more</mat-icon>
       }
     </mat-list-item>
     
@@ -25,13 +23,13 @@
     @if (item.children && item.children.length > 0) {
       @for (child of item.children; track child.route) {
         <mat-list-item 
-          class="navigation-item sub-item"
           [routerLink]="child.route"
-          routerLinkActive="active"
-          (click)="handleNavigate()">
+          routerLinkActive="mdc-list-item--activated"
+          (click)="handleNavigate()"
+          style="padding-left: 56px;">
           
-          <mat-icon matListItemIcon class="nav-icon sub-icon">{{ child.icon }}</mat-icon>
-          <span matListItemTitle class="nav-label">{{ child.label }}</span>
+          <mat-icon matListItemIcon>{{ child.icon }}</mat-icon>
+          <span matListItemTitle>{{ child.label }}</span>
         </mat-list-item>
       }
     }

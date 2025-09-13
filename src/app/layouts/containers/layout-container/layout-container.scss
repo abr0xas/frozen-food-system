@@ -1,0 +1,43 @@
+// Material Design First - Container specific UX improvements
+.layout-container {
+  height: 100vh;
+  overflow: hidden;
+  
+  // Loading state
+  &.loading {
+    .page-content {
+      opacity: 0.7;
+      pointer-events: none;
+    }
+  }
+  
+  // Focus management
+  .mat-sidenav-backdrop {
+    background-color: rgba(0, 0, 0, 0.6);
+    transition: background-color 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+  }
+  
+  // Smooth theme transitions
+  * {
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  
+  // Mobile optimizations
+  @media (max-width: 768px) {
+    .mat-sidenav-content {
+      // Prevent horizontal scroll on mobile
+      overflow-x: hidden;
+    }
+  }
+}
+
+// Enhanced accessibility
+.visually-hidden {
+  position: absolute !important;
+  clip: rect(1px, 1px, 1px, 1px);
+  padding: 0 !important;
+  border: 0 !important;
+  height: 1px !important;
+  width: 1px !important;
+  overflow: hidden;
+}
