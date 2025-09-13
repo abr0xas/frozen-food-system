@@ -1,13 +1,14 @@
 export interface User {
-  id: string;
-  email: string;
-  role: 'admin' | 'operario' | 'repartidor';
-  created_at: string;
-  updated_at: string;
+  readonly id: string;
+  readonly email: string;
+  readonly role: 'admin' | 'operario' | 'repartidor';
+  readonly created_at: string;
+  readonly updated_at: string;
 }
 
 export interface AuthState {
-  user: User | null;
-  isAuthenticated: boolean;
-  loading: boolean;
+  readonly user: User | null;
+  readonly isAuthenticated: boolean;
+  readonly loading: boolean;
+  readonly error: string | null;
 }

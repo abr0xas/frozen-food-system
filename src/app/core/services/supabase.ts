@@ -29,7 +29,7 @@ export class SupabaseService {
 
   async testConnection(): Promise<{ success: boolean; message: string }> {
     try {
-      const { data, error } = await this.supabase
+      const { error } = await this.supabase
         .from('_supabase_migrations')
         .select('*')
         .limit(1);

@@ -1,1 +1,77 @@
-<p>login-form works!</p>
+<form [formGroup]="loginForm" (ngSubmit)="onFormSubmit()" class="login-form">
+  <div class="form-header">
+    <h2>Iniciar Sesión</h2>
+    <p>Ingresa tus credenciales para acceder al sistema</p>
+  </div>
+
+  @if (error()) {
+    <div class="error-message" role="alert">
+      <mat-icon>error</mat-icon>
+      <span>{{ error() }}</span>
+      <button type="button" mat-icon-button (click)="onClearError()">
+        <mat-icon>close</mat-icon>
+      </button>
+    </div>
+  }
+
+  <div class="form-fields">
+    <mat-form-field appearance="outline">
+      <mat-label>Email</mat-label>
+      <input 
+        matInput 
+        type="email" 
+        formControlName="email" 
+        placeholder="usuario@ejemplo.com"
+        autocomplete="email">
+      <mat-icon matSuffix>email</mat-icon>
+      @if (loginForm.get('email')?.invalid && loginForm.get('email')?.touched) {
+        <mat-error>{{ getEmailErrorMessage() }}</mat-error>
+      }
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Contraseña</mat-label>
+      <input 
+        matInput 
+        [type]="hidePasswordValue ? 'password' : 'text'" 
+        formControlName="password"
+        autocomplete="current-password">
+      <button 
+        type="button" 
+        mat-icon-button 
+        matSuffix 
+        (click)="togglePasswordVisibility()"
+        [attr.aria-label]="'Hide password'" 
+        [attr.aria-pressed]="hidePasswordValue">
+        @if (hidePasswordValue) {
+          <mat-icon>visibility_off</mat-icon>
+        } @else {
+          <mat-icon>visibility</mat-icon>
+        }
+      </button>
+      @if (loginForm.get('password')?.invalid && loginForm.get('password')?.touched) {
+        <mat-error>{{ getPasswordErrorMessage() }}</mat-error>
+      }
+    </mat-form-field>
+
+    <mat-checkbox formControlName="rememberMe" class="remember-me">
+      Mantener sesión iniciada
+    </mat-checkbox>
+  </div>
+
+  <div class="form-actions">
+    <button 
+      mat-raised-button 
+      color="primary" 
+      type="submit" 
+      [disabled]="loginForm.invalid || loading()"
+      class="login-button">
+      @if (loading()) {
+        <mat-spinner diameter="20"></mat-spinner>
+        <span>Iniciando sesión...</span>
+      } @else {
+        <span>Iniciar Sesión</span>
+      }
+    </button>
+  </div>
+</form>
