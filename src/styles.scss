@@ -1,7 +1,7 @@
 
 @use '@angular/material' as mat;
 
-// Custom theme for Frozen Food System
+// Usar el theme automático de Material
 html {
   @include mat.theme((
     color: (
@@ -13,16 +13,16 @@ html {
   ));
 }
 
+// Estilos base mínimos
 body {
-  color-scheme: light;
-  background-color: var(--mat-sys-surface);
-  color: var(--mat-sys-on-surface);
-  font: var(--mat-sys-body-medium);
   margin: 0;
   height: 100%;
   font-family: Roboto, "Helvetica Neue", sans-serif;
+  transition: color-scheme 0.3s ease;
 }
 
 html {
   height: 100%;
 }
+
+// Material maneja automáticamente light/dark con color-scheme CSS property

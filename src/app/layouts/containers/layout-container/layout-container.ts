@@ -102,6 +102,9 @@ export class LayoutContainer {
     // Detectar si es móvil
     this.checkMobile();
     window.addEventListener('resize', () => this.checkMobile());
+    
+    // Inicializar tema (el constructor del servicio ya lo hace, pero aseguramos que se ejecute)
+    this.themeService.currentTheme(); // Trigger computed signal
   }
 
   private checkMobile(): void {
