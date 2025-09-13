@@ -1,0 +1,27 @@
+.placeholder-container {
+  padding: 2rem;
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+mat-card-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+mat-icon {
+  color: var(--mat-sys-on-surface-variant);
+}
+
+p {
+  color: var(--mat-sys-on-surface-variant);
+  margin-bottom: 1rem;
+}
+
+small {
+  color: var(--mat-sys-outline);
+  font-style: italic;
+}

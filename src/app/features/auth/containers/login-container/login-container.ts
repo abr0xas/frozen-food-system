@@ -47,7 +47,7 @@ export class LoginContainerComponent {
   }
 
   private redirectAfterLogin(): void {
-    const returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+    const returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/dashboard';
     this.router.navigate([returnUrl]);
   }
 }
