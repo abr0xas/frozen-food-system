@@ -1,4 +1,4 @@
-import { Injectable, signal, computed, inject } from '@angular/core';
+import { Injectable, signal, computed, inject, effect } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 
 export type ThemeMode = 'light' | 'dark' | 'auto';
@@ -27,6 +27,11 @@ export class ThemeService {
   constructor() {
     this.initializeTheme();
     this.setupSystemThemeListener();
+    
+    // Effect to automatically apply theme when currentTheme changes
+    effect(() => {
+      this.applyTheme();
+    });
   }
 
   private initializeTheme(): void {
@@ -38,9 +43,6 @@ export class ThemeService {
     
     // Detectar preferencia del sistema
     this.updateSystemPreference();
-    
-    // Aplicar tema inicial
-    this.applyTheme();
   }
 
   private setupSystemThemeListener(): void {
@@ -50,7 +52,6 @@ export class ThemeService {
       
       mediaQuery.addEventListener('change', () => {
         this.updateSystemPreference();
-        this.applyTheme();
       });
     }
   }
@@ -65,14 +66,14 @@ export class ThemeService {
     const theme = this.currentTheme();
     const body = this.document.body;
     
-    // Remover clases anteriores
-    body.classList.remove('light-theme', 'dark-theme');
-    
-    // Agregar clase del tema actual
-    body.classList.add(`${theme}-theme`);
+    // Solo cambiar color-scheme - Material maneja el resto automáticamente
+    body.style.colorScheme = theme;
     
     // Actualizar meta theme-color para mobile
     this.updateMetaThemeColor(theme);
+    
+    // Debug log
+    console.log('Theme applied:', theme, 'Mode:', this.themeMode());
   }
 
   private updateMetaThemeColor(theme: 'light' | 'dark'): void {
@@ -85,7 +86,6 @@ export class ThemeService {
   setTheme(mode: ThemeMode): void {
     this.themeMode.set(mode);
     localStorage.setItem('theme-mode', mode);
-    this.applyTheme();
   }
 
   toggleTheme(): void {
