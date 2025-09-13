@@ -3,7 +3,7 @@ import { RouterOutlet } from '@angular/router';
 import { AppShellComponent } from '../../components/app-shell/app-shell';
 import { AuthService } from '../../../core/services/auth';
 import { ThemeService } from '../../../core/services/theme';
-import { LayoutState, NavigationItem } from '../../models/layout.interface';
+import { NavigationItem } from '../../models/layout.interface';
 
 @Component({
   selector: 'app-layout-container',
@@ -20,8 +20,8 @@ import { LayoutState, NavigationItem } from '../../models/layout.interface';
       (toggleSidebar)="toggleSidebar()"
       (closeSidebar)="closeSidebar()"
       (toggleTheme)="toggleTheme()"
-      (onLogout)="onLogout()"
-      (onNavigate)="closeSidebar()">
+      (logout)="onLogout()"
+      (navigate)="closeSidebar()">
       
       <router-outlet></router-outlet>
     </app-app-shell>

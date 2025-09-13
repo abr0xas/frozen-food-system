@@ -37,8 +37,8 @@ export class AppShellComponent {
   toggleSidebar = output<void>();
   closeSidebar = output<void>();
   toggleTheme = output<void>();
-  onLogout = output<void>();
-  onNavigate = output<void>();
+  logout = output<void>();
+  navigate = output<void>();
 
   // Métodos solo para UI - delegan al container
   handleToggleSidebar(): void {
@@ -54,10 +54,10 @@ export class AppShellComponent {
   }
 
   handleLogout(): void {
-    this.onLogout.emit();
+    this.logout.emit();
   }
 
   handleNavigate(): void {
-    this.onNavigate.emit();
+    this.navigate.emit();
   }
 }
