@@ -1,32 +1,42 @@
+// Mobile-first approach
 .login-container {
   min-height: 100vh;
+  min-height: 100dvh; // Dynamic viewport height for mobile browsers
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 1rem;
-  background: linear-gradient(135deg, 
-    var(--mat-sys-primary-container) 0%,
-    var(--mat-sys-secondary-container) 100%);
+  background: var(--mat-sys-surface);
 
   .login-content {
     width: 100%;
-    max-width: 400px;
+    max-width: 100%;
     display: flex;
     justify-content: center;
   }
 }
 
-// Mobile adjustments
-@media (max-width: 480px) {
+// Tablet and larger screens
+@media (min-width: 768px) {
   .login-container {
-    padding: 0;
-    align-items: flex-start;
+    background: linear-gradient(135deg, 
+      var(--mat-sys-primary-container) 0%,
+      var(--mat-sys-secondary-container) 100%);
+    padding: 2rem;
     
     .login-content {
-      max-width: 100%;
-      min-height: 100vh;
-      align-items: center;
-      display: flex;
+      max-width: 420px;
+    }
+  }
+}
+
+// Desktop screens
+@media (min-width: 1024px) {
+  .login-container {
+    padding: 3rem;
+    
+    .login-content {
+      max-width: 460px;
     }
   }
 }

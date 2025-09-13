@@ -1,10 +1,11 @@
+// Mobile-first base styles
 .login-form {
-  max-width: 400px;
   width: 100%;
-  padding: 2rem;
-  background-color: var(--mat-sys-surface-container);
-  border-radius: 12px;
-  box-shadow: var(--mat-sys-elevation-level-3);
+  max-width: 100%;
+  padding: 1.5rem;
+  background-color: var(--mat-sys-surface);
+  border-radius: 0;
+  box-shadow: none;
 
   .form-header {
     text-align: center;
@@ -94,48 +95,64 @@
   }
 }
 
-// Responsive design
-@media (max-width: 480px) {
+// Tablet and larger screens - enhanced styles
+@media (min-width: 768px) {
   .login-form {
-    max-width: 100%;
-    padding: 1.5rem;
-    border-radius: 0;
-    box-shadow: none;
-    background-color: var(--mat-sys-background);
+    max-width: 420px;
+    padding: 2.5rem;
+    border-radius: 16px;
+    box-shadow: var(--mat-sys-elevation-level-4);
+    background-color: var(--mat-sys-surface-container);
 
     .form-header {
-      margin-bottom: 1.5rem;
+      margin-bottom: 2rem;
 
       h2 {
-        font-size: 1.5rem;
+        font-size: 1.75rem;
       }
     }
 
     .form-fields {
-      gap: 0.75rem;
-      margin-bottom: 1.5rem;
+      gap: 1.25rem;
+      margin-bottom: 2rem;
     }
   }
 }
 
-// Focus and hover states
-.login-form {
-  .login-button {
-    transition: all 0.2s ease-in-out;
+// Desktop screens - premium feel
+@media (min-width: 1024px) {
+  .login-form {
+    max-width: 460px;
+    padding: 3rem;
+    border-radius: 20px;
+    box-shadow: var(--mat-sys-elevation-level-5);
 
-    &:hover:not([disabled]) {
-      transform: translateY(-1px);
-      box-shadow: var(--mat-sys-elevation-level-4);
-    }
-
-    &:focus {
-      outline: 2px solid var(--mat-sys-primary);
-      outline-offset: 2px;
+    .form-header h2 {
+      font-size: 2rem;
     }
   }
 }
 
-// High contrast mode support
+// Interactive states
+.login-form .login-button {
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+
+  &:hover:not([disabled]) {
+    transform: translateY(-1px);
+    box-shadow: var(--mat-sys-elevation-level-4);
+  }
+
+  &:active:not([disabled]) {
+    transform: translateY(0);
+  }
+
+  &:focus {
+    outline: 2px solid var(--mat-sys-primary);
+    outline-offset: 2px;
+  }
+}
+
+// Accessibility support
 @media (prefers-contrast: high) {
   .login-form {
     border: 2px solid var(--mat-sys-outline);
@@ -146,14 +163,33 @@
   }
 }
 
-// Reduced motion support
 @media (prefers-reduced-motion: reduce) {
+  .login-form .login-button {
+    transition: none;
+
+    &:hover:not([disabled]) {
+      transform: none;
+    }
+  }
+}
+
+// Touch-friendly mobile design
+@media (hover: none) and (pointer: coarse) {
   .login-form {
     .login-button {
-      transition: none;
-
+      min-height: 48px; // Touch target size
+      
       &:hover:not([disabled]) {
         transform: none;
+        box-shadow: none;
+      }
+    }
+    
+    mat-form-field {
+      // Larger touch targets for mobile
+      .mat-mdc-form-field-input-control input {
+        min-height: 24px;
+        padding: 12px 0;
       }
     }
   }

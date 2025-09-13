@@ -64,51 +64,148 @@ import { MatIconModule } from '@angular/material/icon';
   `,
   styles: [`
     .profile-container {
-      padding: 2rem;
-      max-width: 800px;
-      margin: 0 auto;
+      padding: 1rem;
+      width: 100%;
+      min-height: 100vh;
+      min-height: 100dvh;
+      background-color: var(--mat-sys-surface);
     }
 
     .profile-header {
       display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 2rem;
+      flex-direction: column;
+      gap: 1rem;
+      text-align: center;
+      margin-bottom: 1.5rem;
     }
 
     .profile-header h1 {
       display: flex;
       align-items: center;
-      gap: 1rem;
+      justify-content: center;
+      gap: 0.5rem;
       margin: 0;
-      color: #1976d2;
+      font-size: 1.25rem;
+      color: var(--mat-sys-primary);
+      flex-wrap: wrap;
+    }
+
+    .profile-header button {
+      align-self: center;
+      min-height: 40px;
     }
 
     .profile-content {
       display: flex;
       flex-direction: column;
-      gap: 2rem;
+      gap: 1.5rem;
     }
 
     .config-buttons {
       display: flex;
       flex-direction: column;
-      gap: 1rem;
+      gap: 0.75rem;
       margin-top: 1rem;
     }
 
     .config-buttons button {
       display: flex;
       align-items: center;
-      gap: 0.5rem;
+      gap: 0.75rem;
       justify-content: flex-start;
+      padding: 1rem;
+      min-height: 48px;
+      width: 100%;
+      text-align: left;
+      border-radius: 8px;
     }
 
-    @media (max-width: 768px) {
+    .config-buttons mat-icon {
+      flex-shrink: 0;
+      font-size: 1.25rem;
+      width: 1.25rem;
+      height: 1.25rem;
+    }
+
+    @media (min-width: 768px) {
+      .profile-container {
+        padding: 2rem;
+        max-width: 800px;
+        margin: 0 auto;
+      }
+
       .profile-header {
-        flex-direction: column;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        text-align: left;
+        margin-bottom: 2rem;
+      }
+
+      .profile-header h1 {
+        font-size: 1.75rem;
         gap: 1rem;
-        text-align: center;
+        justify-content: flex-start;
+        flex-wrap: nowrap;
+      }
+
+      .profile-header button {
+        align-self: auto;
+      }
+
+      .profile-content {
+        gap: 2rem;
+      }
+
+      .config-buttons {
+        gap: 1rem;
+      }
+
+      .config-buttons button {
+        padding: 1.25rem;
+        border-radius: 12px;
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .profile-container {
+        padding: 3rem;
+      }
+
+      .profile-header h1 {
+        font-size: 2rem;
+      }
+
+      .config-buttons {
+        gap: 1.25rem;
+      }
+
+      .config-buttons button {
+        padding: 1.5rem;
+        border-radius: 16px;
+        transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .config-buttons button:hover {
+        transform: translateY(-2px);
+        box-shadow: var(--mat-sys-elevation-level-4);
+      }
+    }
+
+    @media (hover: none) and (pointer: coarse) {
+      .config-buttons button:hover {
+        transform: none;
+        box-shadow: none;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .config-buttons button {
+        transition: none;
+      }
+
+      .config-buttons button:hover {
+        transform: none;
       }
     }
   `]
