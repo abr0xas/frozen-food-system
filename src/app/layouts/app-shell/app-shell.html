@@ -1,1 +1,86 @@
-<p>app-shell works!</p>
+<mat-sidenav-container class="app-container">
+  <!-- Sidebar -->
+  <mat-sidenav 
+    #sidenav 
+    [mode]="isMobile() ? 'over' : 'side'"
+    [opened]="sidebarOpen()"
+    (closed)="closeSidebar()"
+    class="app-sidenav">
+    
+    <!-- Logo/Brand -->
+    <div class="sidenav-header">
+      <h2 class="brand-title">Frozen Food</h2>
+      <span class="brand-subtitle">Sistema de Gestión</span>
+    </div>
+
+    <!-- Navigation -->
+    <app-navigation 
+      (navigate)="closeSidebar()"
+      class="sidenav-content">
+    </app-navigation>
+  </mat-sidenav>
+
+  <!-- Main Content -->
+  <mat-sidenav-content class="app-content">
+    <!-- Header -->
+    <mat-toolbar class="app-toolbar">
+      <!-- Menu Button -->
+      <button 
+        mat-icon-button 
+        (click)="toggleSidebar()"
+        class="menu-button">
+        <mat-icon>menu</mat-icon>
+      </button>
+
+      <!-- Title -->
+      <span class="toolbar-title">Dashboard</span>
+
+      <!-- Spacer -->
+      <span class="toolbar-spacer"></span>
+
+      <!-- Theme Toggle -->
+      <button 
+        mat-icon-button 
+        (click)="toggleTheme()"
+        class="theme-toggle-button"
+        [title]="'Cambiar tema: ' + currentTheme()">
+        @if (isDark()) {
+          <mat-icon>light_mode</mat-icon>
+        } @else {
+          <mat-icon>dark_mode</mat-icon>
+        }
+      </button>
+
+      <!-- User Menu -->
+      @if (isAuthenticated()) {
+        <button 
+          mat-icon-button 
+          [matMenuTriggerFor]="userMenu"
+          class="user-menu-button">
+          <mat-icon>account_circle</mat-icon>
+        </button>
+        
+        <mat-menu #userMenu="matMenu">
+          <div class="user-menu-header">
+            <div class="user-info">
+              <div class="user-name">{{ user()?.email }}</div>
+              <div class="user-role">Administrador</div>
+            </div>
+          </div>
+          
+          <mat-divider></mat-divider>
+          
+          <button mat-menu-item (click)="onLogout()">
+            <mat-icon>logout</mat-icon>
+            <span>Cerrar Sesión</span>
+          </button>
+        </mat-menu>
+      }
+    </mat-toolbar>
+
+    <!-- Page Content -->
+    <div class="page-content">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

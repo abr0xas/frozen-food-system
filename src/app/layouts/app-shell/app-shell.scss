@@ -1,0 +1,138 @@
+.app-container {
+  height: 100vh;
+  width: 100%;
+}
+
+.app-sidenav {
+  width: 280px;
+  border-right: 1px solid rgba(0, 0, 0, 0.12);
+  
+  .sidenav-header {
+    padding: 24px 16px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    
+    .brand-title {
+      margin: 0;
+      font-size: 1.5rem;
+      font-weight: 600;
+      line-height: 1.2;
+    }
+    
+    .brand-subtitle {
+      font-size: 0.875rem;
+      opacity: 0.8;
+    }
+  }
+  
+  .sidenav-content {
+    padding: 16px 0;
+  }
+}
+
+.app-content {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.app-toolbar {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+  background: white;
+  
+  .menu-button {
+    margin-right: 16px;
+  }
+  
+  .toolbar-title {
+    font-size: 1.25rem;
+    font-weight: 500;
+  }
+  
+  .toolbar-spacer {
+    flex: 1 1 auto;
+  }
+  
+  .theme-toggle-button {
+    margin-right: 8px;
+  }
+  
+  .user-menu-button {
+    margin-left: 8px;
+  }
+}
+
+.page-content {
+  flex: 1;
+  padding: 24px;
+  overflow-y: auto;
+  background-color: #fafafa;
+}
+
+// User Menu Styles
+.user-menu-header {
+  padding: 16px;
+  min-width: 200px;
+  
+  .user-info {
+    .user-name {
+      font-weight: 500;
+      font-size: 0.875rem;
+      color: rgba(0, 0, 0, 0.87);
+    }
+    
+    .user-role {
+      font-size: 0.75rem;
+      color: rgba(0, 0, 0, 0.6);
+      margin-top: 2px;
+    }
+  }
+}
+
+// Responsive Design
+@media (max-width: 768px) {
+  .app-sidenav {
+    width: 100%;
+  }
+  
+  .page-content {
+    padding: 16px;
+  }
+  
+  .sidenav-header {
+    padding: 16px;
+    
+    .brand-title {
+      font-size: 1.25rem;
+    }
+  }
+}
+
+// Dark Theme Support
+@media (prefers-color-scheme: dark) {
+  .app-toolbar {
+    background: #424242;
+    color: white;
+    border-bottom-color: rgba(255, 255, 255, 0.12);
+  }
+  
+  .page-content {
+    background-color: #303030;
+  }
+  
+  .user-menu-header {
+    .user-info {
+      .user-name {
+        color: rgba(255, 255, 255, 0.87);
+      }
+      
+      .user-role {
+        color: rgba(255, 255, 255, 0.6);
+      }
+    }
+  }
+}

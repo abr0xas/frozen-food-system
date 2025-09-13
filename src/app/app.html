@@ -1,1 +1,5 @@
-<router-outlet />
+@if (isAuthenticated()) {
+  <app-app-shell></app-app-shell>
+} @else {
+  <router-outlet></router-outlet>
+}
