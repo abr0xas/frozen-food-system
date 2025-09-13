@@ -47,6 +47,61 @@ ng generate guard core/guards/auth
 - Mantiene convenciones de naming
 - Configura imports y dependencies correctamente
 
+## Angular Material Design System
+
+### Principios de Material First
+- **USAR Material components al máximo** - Evitar crear componentes custom cuando existe equivalente en Material
+- **NO personalizar con CSS** salvo casos excepcionales - Aprovechar theming automático de Material
+- **Usar color-scheme** para themes en lugar de CSS custom
+- **Aprovechar Material tokens** - Variables CSS de Material Design para consistencia
+
+```typescript
+// ✅ Correcto - Usar Material components directamente
+@Component({
+  template: `
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>{{ title }}</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>{{ content }}</mat-card-content>
+    </mat-card>
+  `
+})
+
+// ✅ Correcto - Themes automáticos con color-scheme
+body.style.colorScheme = 'dark'; // Material se adapta automáticamente
+
+// ❌ Incorrecto - CSS personalizado innecesario
+.custom-card {
+  background: #424242;
+  color: white;
+  border-radius: 8px;
+}
+```
+
+### Cuándo SÍ personalizar CSS
+- **Solo si Material no cubre el caso** - Espaciado específico, layouts únicos
+- **Responsive breakpoints** - Material no incluye responsive utilities
+- **Animaciones específicas** - Transiciones no disponibles en Material
+
+```scss
+// ✅ Permitido - Responsive layout
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  
+  @media (min-width: 768px) {
+    grid-template-columns: 1fr 2fr;
+  }
+}
+
+// ✅ Permitido - Espaciado específico del negocio
+.product-list-item {
+  padding: 1.5rem; // Espaciado específico UX
+}
+```
+
 ## Angular Modern Standards
 
 ### Componentes
@@ -302,4 +357,45 @@ const routes: Routes = [
 @for (item of items(); track item.id) {
   <div>{{ item.name }}</div>
 }
+
+## Instrucciones para Claude Code
+
+### 📚 Documentos de contexto obligatorios
+- **Leer siempre al inicio:** `CLAUDE.md` - Instrucciones específicas y estándares
+- **Consultar para detalles:** Este archivo (`development-standards.md`) para especificaciones técnicas
+- **Verificar scope:** GitHub Issues para requirements exactos del task
+
+### 🎯 Workflow automático requerido
+1. **Inicialización:** Leer `CLAUDE.md` completo antes de empezar cualquier task
+2. **Generación:** SIEMPRE usar Angular CLI - `ng generate component path/name`
+3. **Estándares:** Container/Presentational pattern + Material First + ChangeDetectionStrategy.OnPush
+4. **Verificación:** `npm run claude:lint` antes de commit
+5. **Progreso:** Usar TodoWrite tool para tareas multi-step
+
+### 📋 Scripts de ayuda disponibles
+```bash
+npm run claude:help       # Lista todos los comandos de ayuda
+npm run claude:standards  # Muestra estos estándares rápidamente  
+npm run claude:lint       # Linting con confirmación para Claude
+npm run claude:workflow   # Pasos del workflow resumidos
+npm run claude:generate   # Comandos Angular CLI más comunes
+```
+
+### ⚠️ Checklist de verificación antes de commit
+- [ ] Leído `CLAUDE.md` al inicio de la sesión
+- [ ] Usado Angular CLI para generar nuevos componentes
+- [ ] Aplicado Container/Presentational pattern estrictamente
+- [ ] Material components usados al máximo, CSS solo si es necesario
+- [ ] ChangeDetectionStrategy.OnPush en todos los components
+- [ ] input()/output() + inject() + signals utilizados
+- [ ] `npm run claude:lint` ejecutado y pasando
+- [ ] Commits con formato correcto: `type: description`
+
+### 🔄 Referencias cruzadas
+- **Contexto principal:** `CLAUDE.md` 
+- **Arquitectura:** `README.md` sección "Arquitectura"
+- **Issues templates:** `.github/ISSUE_TEMPLATE/claude-task.md`
+
+---
+*Estas instrucciones aseguran que Claude Code mantenga consistencia automáticamente sin repetir contexto en cada task*
 ```

@@ -7,7 +7,12 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "lint": "ng lint"
+    "lint": "ng lint",
+    "claude:help": "echo '🤖 Claude Code Helper:' && echo 'claude:standards - Mostrar estándares del proyecto' && echo 'claude:lint - Linting con mensaje para Claude' && echo 'claude:workflow - Mostrar workflow paso a paso' && echo 'claude:generate - Mostrar comandos de generación'",
+    "claude:standards": "cat docs/development-standards.md",
+    "claude:lint": "npm run lint && echo '✅ Linting OK para Claude - Todo listo para commit'",
+    "claude:workflow": "echo '📋 Workflow para Claude:' && echo '1. Leer CLAUDE.md' && echo '2. ng generate component path/name' && echo '3. Seguir Container/Presentational pattern' && echo '4. npm run claude:lint' && echo '5. git add . && git commit'",
+    "claude:generate": "echo '🔧 Comandos de generación Angular CLI:' && echo 'ng generate component features/modulo/components/nombre' && echo 'ng generate service core/services/nombre' && echo 'ng generate guard core/guards/nombre'"
   },
   "prettier": {
     "printWidth": 100,

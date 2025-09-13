@@ -65,6 +65,12 @@ ng serve
 3. Claude Code para implementación
 4. Cursor para refinamientos
 
+### Para desarrolladores AI
+- **Claude Code:** Leer `CLAUDE.md` al inicio de cada sesión para mantener contexto automático
+- **Estándares:** Consultar `docs/development-standards.md` para detalles técnicos específicos
+- **Workflow:** Seguir Container/Presentational pattern + Material First + Angular CLI obligatorio
+- **Issues:** Usar templates de GitHub que incluyen checklist de estándares automáticos
+
 ### Branching Strategy
 ```
 main           # Producción
